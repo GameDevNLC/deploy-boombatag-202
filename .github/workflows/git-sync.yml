@@ -1,0 +1,18 @@
+name: Git Sync
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+jobs:
+  git-sync:
+    if: ${{ github.repository == 'GameDevNLC/deploy-boombatag-2023' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🔗 Synchronize Repository
+        uses: wei/git-sync@v3
+        with:
+          source_repo: "https://GameDevNLC:${{ secrets.GH_TOKEN }}@github.com/GameDevNLC/deploy-boombatag-2023.git"
+          source_branch: "main"
+          destination_repo: "https://Schematics-23:${{ secrets.GH_TOKEN }}@github.com/Schematics-23/deploy-boombatag-2023.git"
+          destination_branch: "main"
